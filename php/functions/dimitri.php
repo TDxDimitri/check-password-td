@@ -15,42 +15,73 @@ function checkPassword($password) {
     $maj=null;
     $spec=null;
     $qtt=null;
+    $tab=null;
+    $v=0;
+    $c=null;
 
     if((!empty($password)) && preg_match("/[0-9]/",$password)){
 
         $ent = "d-none";
+        $v=$v+20;
 
      }
     if((!empty($password)) && preg_match("/[a-z]/",$password)){
 
         $min = "d-none";
+        $v=$v+20;
 
      }
     if((!empty($password)) && preg_match("/[A-Z]/",$password)){
 
         $maj = "d-none";
+        $v=$v+20;
 
      }
     if((!empty($password)) && preg_match("/[!@#$%^&*()_+\-=\[\]{};:\\|,.<>\/?]/",$password)){
 
         $spec = "d-none";
+        $v=$v+20;
 
      }
-    // if((!empty($password)) && preg_match("/.{12-100}/", $password)){
+    if((!empty($password)) && preg_match("/^.{12,}$/", $password)){
 
-    //     $qtt = "d-none";
+        $qtt = "d-none";
+        $v=$v+20;
 
-    // }
-        
+    }
+
+    if($v==20){
+         $c = "bg-danger";
+    }
+    if($v==40){
+         $c = "bg-warning";
+    }
+    if($v==60){
+         $c = "bg-info";
+    }
+    if($v==80){
+         $c = "";
+    }
+    if($v==100){
+         $c = "bg-success";
+    }
     
-
     echo '<div class="progress">
-                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 0%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class=" progress-bar-animated progress-bar progress-bar-striped ' . $c . '" role="progressbar" style="width: '.$v.'%" aria-valuenow="'.$v.'" aria-valuemin="0" aria-valuemax="100"></div>
             </div>';
+
+    if(($ent=="d-none") && ($min=="d-none") && ($maj=="d-none") && ($spec=="d-none") && ($qtt=="d-none")){
+        
+        $tab = "d-none";
+                
+        echo '<div class="d-flex justify-content-center">
+                <a type="button" href="index.php?" class=" mt-5 btn btn-success">Ok</a>
+            </div>';
+    }        
 
     echo    '<div class="container mt-5 w-50">
                 <ul class="list-group">
-                    <li class="list-group-item active">Le mot de passe doit contenir au moins:</li>
+                    <li class="list-group-item active ' . $tab . '">Le mot de passe doit contenir au moins:</li>
                     <li class="list-group-item ' . $ent . '">un chiffre</li>
                     <li class="list-group-item ' . $min . '">une minuscule</li>
                     <li class="list-group-item ' . $maj . '">une majuscule</li>
@@ -58,34 +89,6 @@ function checkPassword($password) {
                     <li class="list-group-item ' . $qtt . '">12 caractères</li>
                 </ul>
             </div>';
-
-  // </div>
-// <div class="progress">
-//   <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-// </div>
-// <div class="progress">
-//   <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-// </div>
-// <div class="progress">
-//   <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-// </div>
-// <div class="progress">
-//   <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-// </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     // mise en place de l'interface 
