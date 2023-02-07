@@ -1,5 +1,5 @@
 <?php
-    // Import your own function
+    include("./functions/dimitri.php");
 ?>
 
 <!DOCTYPE html>
@@ -23,6 +23,8 @@
             if (isset($_GET['password'])) {
 
                 $password = $_GET['password'];
+
+               \dimitri\checkPassword($password);
 
                 // Use your own function with your namespace
 
