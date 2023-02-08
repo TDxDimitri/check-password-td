@@ -70,7 +70,7 @@ function checkPassword($password) {
                 <div class=" progress-bar-animated progress-bar progress-bar-striped ' . $c . '" role="progressbar" style="width: '.$v.'%" aria-valuenow="'.$v.'" aria-valuemin="0" aria-valuemax="100"></div>
             </div>';
 
-    if(($ent=="d-none") && ($min=="d-none") && ($maj=="d-none") && ($spec=="d-none") && ($qtt=="d-none")){
+    if(($v==100)){
         
         $tab = "d-none";
                 
